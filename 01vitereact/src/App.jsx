@@ -1,7 +1,13 @@
+import Chai from "./chai.jsx"
+
 function App() {
 
   return (
-    <h1>Chai aur React with vite | CK </h1>
+    <>
+    <Chai />
+    <h1>Chai aur react</h1>
+    <p>test para</p>
+    </>
   )
 }
 
