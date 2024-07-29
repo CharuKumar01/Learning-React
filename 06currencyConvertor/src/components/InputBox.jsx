@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, {useId} from 'react'
-
+import PropTypes from 'prop-types';
+import { useId } from 'react';
 
 function InputBox({
     label,
@@ -9,14 +8,13 @@ function InputBox({
     onAmountChange,
     onCurrencyChange,
     currencyOptions = [],
-    selectCurrency = "usd",
+    selectCurrency = 'usd',
     amountDisable = false,
+    amountDisableable = false,
     currencyDisable = false,
-    
-    className = "",
+    className = ''
 }) {
-   
-    const amountInputId = useId()
+    const amountInputId = useId();
 
     return (
         <div className={`bg-white p-3 rounded-lg text-sm flex ${className}`}>
@@ -41,19 +39,29 @@ function InputBox({
                     value={selectCurrency}
                     onChange={(e) => onCurrencyChange && onCurrencyChange(e.target.value)}
                     disabled={currencyDisable}
-                    
                 >
-                    
-                        {currencyOptions.map((currency) => (
-                            <option key={currency} value={currency}>
-                            {currency}
+                    {currencyOptions.map((option) => (
+                        <option key={option} value={option}>
+                            {option}
                         </option>
-                        ))}
-                
+                    ))}
                 </select>
             </div>
         </div>
     );
 }
+
+InputBox.propTypes = {
+    label: PropTypes.string.isRequired,
+    amount: PropTypes.number.isRequired,
+    onAmountChange: PropTypes.func.isRequired,
+    onCurrencyChange: PropTypes.func.isRequired,
+    currencyOptions: PropTypes.arrayOf(PropTypes.string),
+    selectCurrency: PropTypes.string,
+    amountDisable: PropTypes.bool,
+    amountDisableable: PropTypes.bool,
+    currencyDisable: PropTypes.bool,
+    className: PropTypes.string
+};
 
 export default InputBox;
